@@ -52,13 +52,6 @@ table {
     box-sizing: border-box;
 }
 
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    flex-basis: 300px;
-}
-
 /* For mobile phones: */
 [class*="col-"] {
     width: 100%;
@@ -87,4 +80,90 @@ table {
     #fadeshow {
         display: none;
     }
+}
+.res {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    flex-basis: 300px;
+}
+
+.container {
+    width: 100%;
+    margin-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 0px;
+    padding-top: 0px;
+}
+
+.copyright{
+    float: left;
+    margin: 10px;
+}
+
+.primary-footer{
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.bigtitle{
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px;
+}
+
+.tagline{
+    font-size: 1.2em;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px;
+}
+
+/*TODO: cite the source https://www.w3schools.com/css/css_navbar_horizontal.asp*/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: #111;
+}
+
+.imgprofile{
+    padding-top: 10px;
+    width: 100%;
+    height: auto;
+}
+
+.highlight{
+    padding: 10px;
+}
+
+.imghl{
+    padding-top: 10px;
+    width: 250px;
+    height: 300px;
+    object-fit: scale-down;
+}
+
+.smalltitle{
+    font-size: 1.1em;
+    font-weight: bold;
 }

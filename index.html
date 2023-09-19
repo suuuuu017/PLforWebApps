@@ -7,45 +7,45 @@
 
     <meta name="author" content="Shihe Wang">
     <meta name="description" content="Personal Website of Shihe Wang">
-    <meta name="keywords" content="personal website">
+    <meta name="keywords" content="Shihe Wang">
 
     <title>Shihe Wang</title>
 
     <link rel="stylesheet" href="styles/main.css">
 </head>
 <body>
-    <header>
-    <h1>Shihe Wang's personal website</h1>
-    <h3>This is a tagline</h3>
+    <header class="container">
+        <h1 class="bigtitle">Shihe Wang's Personal Website</h1>
+        <h3 class="tagline">Programmer, climber, existentialist.</h3>
 
-    <nav>
-        <ul>
-            <li><a href="AboutMe.html">About Me</a></li>
-            <li><a href="Resume.html">Resume</a></li>
-            <li><a href="Skills.html">Skills</a></li>
-            <li><a href="FoundInTheWild.html">Found In The Wild</a></li>
-            <li><a href="Contact.html">Contact</a></li>
-        </ul>
-    </nav>
+        <nav>
+            <ul>
+                <li><a href="AboutMe.html">About Me</a></li>
+                <li><a href="Resume.html">Resume</a></li>
+                <li><a href="Skills.html">Skills</a></li>
+                <li><a href="FoundInTheWild.html">Found In The Wild</a></li>
+                <li><a href="Contact.html">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <div>
-    <h2>
-        Hi! You have tumbled upon Shihe Wang's personal website.
-    </h2>
-    <p>
-        I am a master student majoring in Computer Science at the University of Virginia.
-        I am interested in full stack software development and deep learning.
-        Other than writing code I am a climber, you can find me in the wild in my tevas year around.
-    </p>
+    <div class="container">
+        <h2>
+            Hi! You have tumbled upon Shihe Wang's personal website.
+        </h2>
+        <p>
+            I am a master student majoring in Computer Science at the University of Virginia.
+            I am interested in full stack software development and deep learning.
+            Other than writing code I am a climber, you can find me in the wild in my tevas year around.
+        </p>
 
-    <img src="profile.png" alt="Shihe Wang at the belay stance of a multipitch climb.">
+        <img src="profile.png" alt="Shihe Wang at the belay station of a multipitch climb." class="imgprofile">
     </div>
 
-    <div class = "container">
-        <div class="col-4">
-            <h4>Projects and Industry Experience</h4>
-            <img src="" alt="">
+    <div class="container res">
+        <div class="col-4 highlight">
+            <h4 class="smalltitle">Projects and Industry Experience</h4>
+            <img src="proj.jpg" alt="A gold rubber duck trophy" class="imghl">
             <p>
                 I have experience in both full stack development and deep learing.
                 In one of my personal projects, I built online shopping distribute system with Spring boot
@@ -64,9 +64,9 @@
         </div>
 
         <!--  TODO: how to use grid or flex   -->
-        <div class="col-4">
-            <h4>Life in the wild</h4>
-            <img src="" alt="">
+        <div class="col-4 highlight">
+            <h4 class="smalltitle">Life in the wild</h4>
+            <img src="litw.jpg" alt="Shihe Wang on the top of a route" class="imghl">
             <p>
                 I am also an active climber, I am fairly new to climbing but I have climbed in many worldclass crags.
                 Including the new river gorge, the red river gorge, runmney etc. I am super passionate about climbing
@@ -75,9 +75,9 @@
             </p>
         </div>
 
-        <div class="col-4">
-            <h4>Contact me!</h4>
-            <img src="" alt="">
+        <div class="col-4 highlight">
+            <h4 class="smalltitle">Contact me!</h4>
+            <img src="contact.jpg" alt="A bird" class="imghl">
             <p>
                 Currently, I am looking for full time entry level software engineer position. You can reach me through
                 my email: qvw9pv@virginia.edu or my phone: 4349958650. More contact information can be found in my
@@ -87,10 +87,7 @@
         </div>
     </div>
 
-    <footer>
-        <small>
-            &copy; 2023 Shihe Wang
-        </small>
+    <footer class="container primary-footer">
         <nav>
             <ul>
                 <li><a href="AboutMe.html">About Me</a></li>
@@ -100,6 +97,9 @@
                 <li><a href="Contact.html">Contact</a></li>
             </ul>
         </nav>
+        <small class="copyright">
+            &copy; 2023 Shihe Wang
+        </small>
     </footer>
 
 </body>
