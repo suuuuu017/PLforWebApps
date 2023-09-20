@@ -1,3 +1,9 @@
+
+/*Sources used: https://cs4640.cs.virginia.edu/homework/homework2.html,*/
+/*              https://www.w3schools.com/css/css_navbar_horizontal.asp,*/
+/*              https://meyerweb.com/eric/tools/css/reset/*/
+
+
 /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
@@ -52,6 +58,10 @@ table {
     box-sizing: border-box;
 }
 
+.row{
+    width: 100%;
+}
+
 /* For mobile phones: */
 [class*="col-"] {
     width: 100%;
@@ -87,7 +97,6 @@ table {
     padding-right: 20px;
     padding-bottom: 0px;
     padding-top: 0px;
-    box-sizing: border-box;
 }
 
 .copyright{
@@ -160,3 +169,4 @@ li a:hover {
     font-size: 1.1em;
     font-weight: bold;
 }
+
