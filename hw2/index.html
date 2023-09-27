@@ -17,20 +17,43 @@ https://meyerweb.com/eric/tools/css/reset/
     <title>Shihe Wang</title>
 
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet/less" type="text/css" href="styles/custom.less" />
+    <script src="https://cdn.jsdelivr.net/npm/less" ></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
     <header class="container">
         <h1 class="bigtitle">Shihe Wang's Personal Website</h1>
-        <h3 class="tagline">Programmer, climber, existentialist.</h3>
+        <div class="alert alert-light" role="alert">
+            Programmer, climber, existentialist.
+        </div>
+<!--        <h3 class="tagline">Programmer, climber, existentialist.</h3>-->
 
-        <nav>
-            <ul>
-                <li><a href="AboutMe.html">About Me</a></li>
-                <li><a href="Resume.html">Resume</a></li>
-                <li><a href="Skills.html">Skills</a></li>
-                <li><a href="FoundInTheWild.html">Found In The Wild</a></li>
-                <li><a href="Contact.html">Contact</a></li>
-            </ul>
+<!--        <nav>-->
+<!--            <ul>-->
+<!--                <li><a href="AboutMe.html">About Me</a></li>-->
+<!--                <li><a href="Resume.html">Resume</a></li>-->
+<!--                <li><a href="Skills.html">Skills</a></li>-->
+<!--                <li><a href="FoundInTheWild.html">Found In The Wild</a></li>-->
+<!--                <li><a href="Contact.html">Contact</a></li>-->
+<!--            </ul>-->
+<!--        </nav>-->
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">Main Page</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <div class="navbar-nav">
+                        <a class="nav-link" aria-current="page" href="AboutMe.html">About Me</a>
+                        <a class="nav-link" href="Resume.html">Resume</a>
+                        <a class="nav-link" href="Skills.html">Skills</a>
+                        <a class="nav-link" href="FoundInTheWild.html">Found In The Wild</a>
+                        <a class="nav-link" href="Contact.html">Contact</a>
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
 
@@ -45,66 +68,185 @@ https://meyerweb.com/eric/tools/css/reset/
                 Other than writing code I am a climber, you can find me in the wild in my tevas year around.
             </p>
 
-            <img src="profile.png" alt="Shihe Wang at the belay station of a multipitch climb." class="imgprofile">
+            <div id="carouselExample" class="carousel slide">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="profile.png" class="d-block w-100" alt="Shihe Wang at the belay station of a multipitch climb">
+                    </div>
+                    <div class="carousel-item">
+                        <img src="pic4.jpg" class="d-block w-100" alt="Shihe Wang on the top of a route">
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+<!--            <img src="profile.png" alt="Shihe Wang at the belay station of a multipitch climb." class="imgprofile">-->
         </div>
     </section>
 
     <section>
         <div class="container res">
-            <div class="col-4 highlight">
-                <h4 class="smalltitle">Projects and Industry Experience</h4>
-                <img src="proj.jpg" alt="A gold rubber duck trophy on a desk" class="imghl">
-                <p>
-                    I have experience in both full stack development and deep learing.
-                    In one of my personal projects, I built online shopping distribute system with Spring boot
-                    and Spring MVC, handle Prime Day Sale event up to 100K QPS traffic.
-                    I have also worked on a project named KeyFinder aimed to make keyboard shortcuts more accessible
-                    to computer users.
-                    Professionally, I have worked as a software engineer intern and developed a pipeline to
-                    train a model on synthetic data for bin-picking task.
-                    In the other internship, I worked as a machine learning engineer intern and
-                    experimented on improving path planning task with a neural network.
-                </p>
-                <p>
-                    More details on my projects and industry experience can be found in my <a href="Resume.html">Resume</a> page.
-                    An overview of my skills can be found in my <a href="Skills.html">Skills</a> page.
-                </p>
+<!--            <div class="col-4 highlight">-->
+<!--                <h4 class="smalltitle">Projects and Industry Experience</h4>-->
+<!--                <img src="proj.jpg" alt="A gold rubber duck trophy on a desk" class="imghl">-->
+<!--                <p>-->
+<!--                    I have experience in both full stack development and deep learing.-->
+<!--                    In one of my personal projects, I built online shopping distribute system with Spring boot-->
+<!--                    and Spring MVC, handle Prime Day Sale event up to 100K QPS traffic.-->
+<!--                    I have also worked on a project named KeyFinder aimed to make keyboard shortcuts more accessible-->
+<!--                    to computer users.-->
+<!--                    Professionally, I have worked as a software engineer intern and developed a pipeline to-->
+<!--                    train a model on synthetic data for bin-picking task.-->
+<!--                    In the other internship, I worked as a machine learning engineer intern and-->
+<!--                    experimented on improving path planning task with a neural network.-->
+<!--                </p>-->
+<!--                <p>-->
+<!--                    More details on my projects and industry experience can be found in my <a href="Resume.html">Resume</a> page.-->
+<!--                    An overview of my skills can be found in my <a href="Skills.html">Skills</a> page.-->
+<!--                </p>-->
+<!--            </div>-->
+
+            <div class="card col-4" >
+                <img src="proj.jpg" class="card-img-top" alt="A gold rubber duck trophy on a desk">
+                <div class="card-body">
+<!--                    <h5 class="card-title">Projects and Industry Experience</h5>-->
+<!--                    <p class="card-text"> I have experience in both full stack development and deep learing.-->
+<!--                        In one of my personal projects, I built online shopping distribute system with Spring boot-->
+<!--                        and Spring MVC, handle Prime Day Sale event up to 100K QPS traffic.-->
+<!--                        I have also worked on a project named KeyFinder aimed to make keyboard shortcuts more accessible-->
+<!--                        to computer users.-->
+<!--                        Professionally, I have worked as a software engineer intern and developed a pipeline to-->
+<!--                        train a model on synthetic data for bin-picking task.-->
+<!--                        In the other internship, I worked as a machine learning engineer intern and-->
+<!--                        experimented on improving path planning task with a neural network.-->
+<!--                        More details on my projects and industry experience can be found in my Resume page.</p>-->
+                    <div class="accordion accordion-flush" id="accordionFlush1">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse1" aria-expanded="false" aria-controls="flush-collapse1">
+                                    Projects and Industry Experience
+                                </button>
+                            </h2>
+                            <div id="flush-collapse1" class="accordion-collapse collapse" data-bs-parent="#accordionFlush1">
+                                <div class="accordion-body">I have experience in both full stack development and deep learing.
+                                    In one of my personal projects, I built online shopping distribute system with Spring boot
+                                    and Spring MVC, handle Prime Day Sale event up to 100K QPS traffic.
+                                    I have also worked on a project named KeyFinder aimed to make keyboard shortcuts more accessible
+                                    to computer users.
+                                    Professionally, I have worked as a software engineer intern and developed a pipeline to
+                                    train a model on synthetic data for bin-picking task.
+                                    In the other internship, I worked as a machine learning engineer intern and
+                                    experimented on improving path planning task with a neural network.
+                                    More details on my projects and industry experience can be found in my Resume page.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="Resume.html" class="btn btn-primary">Resume</a>
+                </div>
             </div>
 
-            <div class="col-4 highlight">
-                <h4 class="smalltitle">Life in the wild</h4>
-                <img src="litw.jpg" alt="Shihe Wang on the top of a route" class="imghl">
-                <p>
-                    I am also an active climber, I am fairly new to climbing but I have climbed in many worldclass crags.
-                    Including the new river gorge, the red river gorge, runmney etc. I am super passionate about climbing
-                    and am working on my trad climbing skillsets, if you want to see more of my climbing life, you can find
-                    a record of me in the wild climbing in my <a href="FoundInTheWild.html">Found In The Wild</a> page.
-                </p>
+<!--            <div class="col-4 highlight">-->
+<!--                <h4 class="smalltitle">Life in the wild</h4>-->
+<!--                <img src="litw.jpg" alt="Shihe Wang on the top of a route" class="imghl">-->
+<!--                <p>-->
+<!--                    I am also an active climber, I am fairly new to climbing but I have climbed in many worldclass crags.-->
+<!--                    Including the new river gorge, the red river gorge, runmney etc. I am super passionate about climbing-->
+<!--                    and am working on my trad climbing skillsets, if you want to see more of my climbing life, you can find-->
+<!--                    a record of me in the wild climbing in my <a href="FoundInTheWild.html">Found In The Wild</a> page.-->
+<!--                </p>-->
+<!--            </div>-->
+
+            <div class="card col-4" >
+                <img src="litw.jpg" class="card-img-top" alt="Shihe Wang on the top of a route">
+                <div class="card-body">
+<!--                    <h5 class="card-title">Life in the wild</h5>-->
+<!--                    <p class="card-text">I am also an active climber, I am fairly new to climbing but I have climbed in many worldclass crags.-->
+<!--                        Including the new river gorge, the red river gorge, runmney etc. I am super passionate about climbing-->
+<!--                        and am working on my trad climbing skillsets. if you want to see more of my climbing life, you can find-->
+<!--                         a record of me in the wild climbing in my Found In The Wildpage. </p>-->
+                    <div class="accordion accordion-flush" id="accordionFlush2">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse2" aria-expanded="false" aria-controls="flush-collapse2">
+                                    Life in the wild
+                                </button>
+                            </h2>
+                            <div id="flush-collapse2" class="accordion-collapse collapse" data-bs-parent="#accordionFlush2">
+                                <div class="accordion-body">I am also an active climber, I am fairly new to climbing but I have climbed in many worldclass crags.
+                                    Including the new river gorge, the red river gorge, runmney etc. I am super passionate about climbing
+                                    and am working on my trad climbing skillsets. if you want to see more of my climbing life, you can find
+                                    a record of me in the wild climbing in my Found In The Wildpage.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="FoundInTheWild.html" class="btn btn-primary">Found In The Wild</a>
+                </div>
             </div>
 
-            <div class="col-4 highlight">
-                <h4 class="smalltitle">Contact me!</h4>
-                <img src="contact.jpg" alt="A bird on the top of a mountain" class="imghl">
-                <p>
-                    Currently, I am looking for full time entry level software engineer position. You can reach me through
-                    my email: qvw9pv@virginia.edu or my phone: 4349958650. More contact information can be found in my
-                    <a href="Contact.html">Contact</a> page. As well as links to my other social media,
-                    including my linkedin, github, etc.
-                </p>
+<!--            <div class="col-4 highlight">-->
+<!--                <h4 class="smalltitle">Contact me!</h4>-->
+<!--                <img src="contact.jpg" alt="A bird on the top of a mountain" class="imghl">-->
+<!--                <p>-->
+<!--                    Currently, I am looking for full time entry level software engineer position. You can reach me through-->
+<!--                    my email: qvw9pv@virginia.edu or my phone: 4349958650. More contact information can be found in my-->
+<!--                    <a href="Contact.html">Contact</a> page. As well as links to my other social media,-->
+<!--                    including my linkedin, github, etc.-->
+<!--                </p>-->
+<!--            </div>-->
+
+            <div class="card col-4" >
+                <img src="contact.jpg" class="card-img-top" alt="A bird on the top of a mountain">
+                <div class="card-body">
+<!--                    <h5 class="card-title">Contact me!</h5>-->
+<!--                    <p class="card-text">Currently, I am looking for full time entry level software engineer position. You can reach me through-->
+<!--                        my email: qvw9pv@virginia.edu or my phone: 4349958650. More contact information can be found in my Contact page. As well as links to my other social media,-->
+<!--                        including my linkedin, github, etc.</p>-->
+                    <div class="accordion accordion-flush" id="accordionFlush3">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#flush-collapse3" aria-expanded="false" aria-controls="flush-collapse3">
+                                    Contact me!
+                                </button>
+                            </h2>
+                            <div id="flush-collapse3" class="accordion-collapse collapse" data-bs-parent="#accordionFlush3">
+                                <div class="accordion-body">Currently, I am looking for full time entry level software engineer position. You can reach me through
+                                    my email: qvw9pv@virginia.edu or my phone: 4349958650. More contact information can be found in my Contact page. As well as links to my other social media,
+                                    including my linkedin, github, etc.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="Contact.html" class="btn btn-primary">Contact</a>
+                </div>
             </div>
+
         </div>
     </section>
 
     <section>
         <footer class="container primary-footer">
-            <nav>
-                <ul>
-                    <li><a href="AboutMe.html">About Me</a></li>
-                    <li><a href="Resume.html">Resume</a></li>
-                    <li><a href="Skills.html">Skills</a></li>
-                    <li><a href="FoundInTheWild.html">Found In The Wild</a></li>
-                    <li><a href="Contact.html">Contact</a></li>
-                </ul>
+            <nav class="navbar navbar-expand-lg bg-body-tertiary">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="index.html">Main Page</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup2" aria-controls="navbarNavAltMarkup2" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup2">
+                        <div class="navbar-nav">
+                            <a class="nav-link" aria-current="page" href="AboutMe.html">About Me</a>
+                            <a class="nav-link" href="Resume.html">Resume</a>
+                            <a class="nav-link" href="Skills.html">Skills</a>
+                            <a class="nav-link" href="FoundInTheWild.html">Found In The Wild</a>
+                            <a class="nav-link" href="Contact.html">Contact</a>
+                        </div>
+                    </div>
+                </div>
             </nav>
             <small class="copyright">
                 &copy; 2023 Shihe Wang
@@ -114,3 +256,4 @@ https://meyerweb.com/eric/tools/css/reset/
 
 </body>
 </html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
