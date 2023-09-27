@@ -1,0 +1,36 @@
+@width: 250px;
+@height: 300px;
+@position: center;
+
+.alert{
+  text-align: @position;
+}
+
+.bigtitle{
+  text-align: @position;
+}
+
+.backgroundBeige{
+  background-color: gray;
+  margin-bottom: 10px;
+}
+
+.card{
+  .card-img-top{
+    width: @width;
+    height: @height;
+    object-fit: scale-down;
+  }
+  .accordion-header{
+    .accordion-button{
+      .backgroundBeige();
+      font: bold 1em/1em sans-serif;
+    }
+  }
+  .btn{
+    .backgroundBeige();
+
+  }
+}
+
+
