@@ -2,8 +2,8 @@
 /**
  * Homework 4 - PHP Introduction
  *
- * Computing ID:
- * Resources used: [list any resources used to complete this assignment]
+ * Computing ID: qvw9pv
+ * Resources used: https://www.php.net/manual/en/
  */
 
 // Your functions here
