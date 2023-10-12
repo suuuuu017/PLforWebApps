@@ -112,7 +112,6 @@ table {
 .bigtitle{
     font-size: 2em;
     font-weight: bold;
-    text-align: center;
     margin: 20px;
 }
 
@@ -123,7 +122,7 @@ table {
     margin: 20px;
 }
 
-/*TODO: cite the source https://www.w3schools.com/css/css_navbar_horizontal.asp*/
+/*source https://www.w3schools.com/css/css_navbar_horizontal.asp*/
 ul {
     list-style-type: none;
     margin: 0;

@@ -16,23 +16,43 @@ include("homework4.php");
 
 <h2>Problem 1</h2>
 <?php
-error_reporting(E_ALL);
 ini_set('display_errors', '1');
-echo "Write tests for Problem 1 here\n";
-$test1 = [ [ "score" => 30, "max_points" => 100 ], [ "score" => 55, "max_points" => 100 ], [ "score" => 80, "max_points" => 100 ] ];
+error_reporting(E_ALL);
+
+
+$test1 = [ [ "score" => 55, "max_points" => 100 ], [ "score" => 57, "max_points" => 200 ]];
 echo calculateGrade($test1, false); // should be 55
 echo "\n";
+?>
 
-echo gridCorners(3, 4);
+<h2>Problem 2</h2>
+<?php
+
+echo gridCorners(0, 0);
 echo "\n";
+?>
 
-$list1 = ["user" => "Fred", "list" => ["frozen pizza", "bread", "apples", "oranges"]];
+<h2>Problem 3</h2>
+<?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
-$list2 = ["user" => "Wilma", "list" => ["bread", "apples", "coffee"]];
+$list1 = [ "user" => "Fred",
+    "list" => ["frozen pizza", "bread", "apples", "oranges"]
+];
+
+$list2 = [ "user" => "Fred",
+    "list" => ["bread", "apples", "coffee"]
+];
 //print_r(count($list1["list"]));
-echo"\n";
-echo print_r(combineShoppingLists($list1, $list2));
+//echo"\n";
+print_r(combineShoppingLists($list1, $list2));
+//echo"\n";
+?>
 
+<h2>Problem 4</h2>
+<?php
 echo validateEmail("orange@virginia.edu"); // returns true
 echo "\n";
 echo validateEmail("no-reply@google.com"); // returns true
