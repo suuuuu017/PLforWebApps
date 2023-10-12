@@ -96,8 +96,6 @@ function combineShoppingLists($list1, $list2){
 }
 
 function validateEmail($email){
-//    $pattern = '/^(?!.*@.*@)(?!.*\\.@)(?!.*@\\.)([A-Za-z0-9_+.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,})$/';
-//    $pattern = '/^[A-Za-z0-9-+_]+(\.[A-Za-z0-9-+_]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*(\.[A-Za-z]{2,})$/';
     $pattern = '/^[A-Za-z0-9-_+]+(\.[A-Za-z0-9-_+]+)*[A-Za-z0-9-_+]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*$/';
     if (func_num_args() >= 2) {
         $customPattern = func_get_arg(1);
@@ -108,21 +106,17 @@ function validateEmail($email){
     if(preg_match($pattern, $email)) {
         if($customPattern != null) {
             if(preg_match($customPattern, $email)) {
-                echo "Email is valid.";
                 return true;
             }
             else {
-                echo "Email is not valid.";
                 return false;
             }
         }
         else {
-            echo "Email is valid.";
             return true;
         }
     }
     else {
-        echo "Email is not valid.";
         return false;
     }
 
