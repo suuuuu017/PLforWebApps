@@ -1,59 +1,89 @@
 <?php
 
 class TriviaController {
-
-    private $questions = [];
-
+//
+//    private $questions = [];
+//
     private $input = [];
+    private $randomData = [];
 
     /**
      * Constructor
      */
     public function __construct($input) {
-        session_start();
+
 
         $this->input = $input;
-        $this->loadQuestions();
-    }
+        $this->loadWords();
+        echo "<script>console.log('oh no ');</script>";    }
 
     /**
      * Load questions from a URL, store them as an array
      * in the current object.
      */
-    public function loadQuestions() {
-        $this->questions = json_decode(
-            file_get_contents("http://www.cs.virginia.edu/~jh2jf/data/trivia.json"), true);
+    public function loadWords() {
+        $categories = file_get_contents('categories.json');
+        $allData = json_decode($categories, true);
 
-        if (empty($this->questions)) {
-            die("Something went wrong loading questions");
+        $randomIdx = array_rand($allData, 4);
+        $randomData= array();
+        foreach($randomIdx as $rI) {
+            array_push($randomData, $allData[$rI]);
+        }
+
+        if (empty($randomData)) {
+            die("Something went wrong loading data");
+        }
+
+        $_SESSION["randomData"] = $randomData;
+        $this->randomData = $randomData;
+
+        echo "i am here agian again ";
+
+    }
+
+
+    public function getWords() {
+
+        $randomData = $_SESSION["randomData"];
+        if ($randomData != null) {
+            $ansCatAll = array();
+            $ansWordsAll = array();
+
+            $printingWords = array();
+            $ansDict = array();
+            $_SESSION["ansDict"] = $ansDict;
+            foreach ($randomData as $rD) {
+                $ansCat = $rD["category"];
+                array_push($ansCatAll, $ansCat);
+                $ansWords = $rD["words"];
+                array_push($ansWordsAll, $ansWords);
+                $ansDict[$ansCat] = $ansWords;
+
+                foreach ($ansWords as $aW) {
+                    array_push($printingWords, $aW);
+                }
+            }
+            $_SESSION["ansDict"] = $ansDict;
+
+            $index = 1;
+            shuffle($printingWords);
+            $shuffledWords = array();
+            $_SESSION["shuffledWords"] = $shuffledWords;
+            foreach ($printingWords as $pW) {
+                echo "$index : ";
+                echo "<button type=\"button\" > $pW </button>";
+                if ($index % 4 == 0) {
+                    echo "<br>";
+                }
+                $shuffledWords[$index] = $pW;
+                $index = $index + 1;
+            }
+            $_SESSION["shuffledWords"] = $shuffledWords;
+            echo "<br>";
         }
     }
 
-    /**
-     * Get a question
-     *
-     * By default, it returns a random question's id and text.  If given
-     * a question id, it returns that question's text and answer.
-     */
-    public function getQuestion($id=null) {
-
-        if ($id === null) {
-            $id = array_rand($this->questions);
-            return [ "id" => $id, "question" => $this->questions[$id]["question"]];
-        }
-        if (is_numeric($id) && isset($this->questions[$id])) {
-            return $this->questions[$id];
-        }
-        return false;
-    }
-
-    /**
-     * Run the server
-     *
-     * Given the input (usually $_GET), then it will determine
-     * which command to execute based on the given "command"
-     * parameter.  Default is the welcome page.
-     */
     public function run() {
         // Get the command
         $command = "welcome";
@@ -64,10 +94,13 @@ class TriviaController {
             case "login":
                 $this->login();
             case "question":
-                $this->showQuestion();
+                $this->showWords();
                 break;
             case "answer":
+                echo session_id();
                 $this->answerQuestion();
+                print_r($_SESSION["randomData"]);
+                $this->showWords();
                 break;
             case "logout":
                 $this->logout();
@@ -82,11 +115,11 @@ class TriviaController {
      * template PHP file and displays it to the user based on
      * properties of this object.
      */
-    public function showQuestion($message = "") {
+    public function showWords($message = "") {
         $name = $_SESSION["name"];
         $email = $_SESSION["email"];
         $score = $_SESSION["score"];
-        $question = $this->getQuestion();
+        $this->getWords();
         include("./templates/question.php");
     }
 
@@ -101,25 +134,58 @@ class TriviaController {
      * Check the user's answer to a question.
      */
     public function answerQuestion() {
-        $message = "";
-        if (isset($_POST["questionid"]) && is_numeric($_POST["questionid"])) {
+//        $name = $_SESSION["name"];
+//        $email = $_SESSION["email"];
+//        $score = $_SESSION["score"];
+//        include("./templates/question.php");
 
-            $question = $this->getQuestion($_POST["questionid"]);
+        echo "<br>";
 
-            if (strtolower(trim($_POST["answer"])) == strtolower($question["answer"])) {
-                $message = "<div class=\"alert alert-success\" role=\"alert\">
-                Correct!
-                </div>";
-                $_SESSION["score"] += 5;
-            }
-            else {
-                $message = "<div class=\"alert alert-danger\" role=\"alert\">
-                Incorrect! The correct answer was: {$question["answer"]}
-                </div>";
+        // TODO: warning when no user input
+        $numbers = explode(" ", $_POST["numbers"]);
+//        print_r($numbers);
+
+        // find all the words corresponding to the number input by the user
+        $chosenWords = array();
+        foreach ($numbers as $n) {
+            array_push($chosenWords,  $_SESSION["shuffledWords"][$n]);
+        }
+//        print_r($chosenWords);
+
+        // find if the chosenwords all belong to one category
+        // categorydict is a dict of category and array of word
+        // count how many words are in the same category
+
+        $ifSameCatDict = array();
+        foreach ($chosenWords as $cW) {
+            foreach ($_SESSION["ansDict"] as $cat => $words) {
+                if (in_array($cW, $words)) {
+                    if (array_key_exists($cat, $ifSameCatDict) == false) {
+                        $ifSameCatDict[$cat] = 1;
+                    } else {
+                        $ifSameCatDict[$cat] = $ifSameCatDict[$cat] + 1;
+                    }
+                }
             }
         }
 
-        $this->showQuestion($message);
+        print_r($ifSameCatDict);
+
+        echo "<br>";
+
+        // TODO: if user put in the same number multiple times
+        $maxSame = max($ifSameCatDict);
+        if ($maxSame == 4) {
+            echo "You win!";
+        }
+        if ($maxSame == 3) {
+            echo "You are almost there!";
+        }
+        if ($maxSame == 2) {
+            echo "You are half way there!";
+        } else {
+            echo "Keep trying!";
+        }
     }
 
     /**

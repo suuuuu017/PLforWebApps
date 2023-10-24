@@ -31,9 +31,9 @@
                 <div class="card-header">
                     Question
                 </div>
-                <div class="card-body">
-                    <h5 class="card-title"><?=$question["question"]?></h5>
-                </div>
+<!--                <div class="card-body">-->
+<!--                    <h5 class="card-title">--><?php //=$question["question"]?><!--</h5>-->
+<!--                </div>-->
             </div>
         </div>
 
@@ -41,11 +41,11 @@
     <div class="row">
         <div class="col-xs-12">
             <form action="?command=answer" method="post">
-                <input type="hidden" name="questionid" value="<?=$question["id"]?>">
+                <input type="hidden" name="questionid" value="">
 
                 <div class="mb-3">
                     <label for="answer" class="form-label">Trivia Answer: </label>
-                    <input type="text" class="form-control" id="trivia-answer" name="answer">
+                    <input type="text" class="form-control" id="trivia-answer" name="numbers">
                 </div>
 
                 <div class="mb-3 form-check">
