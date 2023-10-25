@@ -1,0 +1,47 @@
+.heading {
+    text-align: center;
+    font-family: G
+}
+
+
+h1 {
+    font-size: 40px;
+}
+
+h2 {
+    font-size: 30px;
+}
+
+.container {
+
+    display: flex;
+    flex-direction: row;
+}
+
+.answers {
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    border-radius: 10px;
+    width: 25%;
+    height: 50%;
+    margin: 5px;
+    text-align: center;
+}
+
+#c1 {
+    background-color: rgb(188, 217, 243);
+}
+
+#c2 {
+    
+    background-color: rgb(154, 240, 165);
+}
+
+#c3 {
+    background-color: rgb(226, 245, 149);
+}
+
+#c4 {
+    background-color: rgb(249, 208, 136);
+}
