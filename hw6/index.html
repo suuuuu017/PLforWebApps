@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <meta name="description" content="evil word guessing">
+
+    <title>Word Guessing</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"  integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"  crossorigin="anonymous">
+
+    <script src="wordlewords.js"></script>
+</head>
+
+<body>
+    <h1>Welcome to evil word guessing</h1>
+    <input type="button" class="btn btn-primary" value="New Game" onclick="getRandomWord(callback);"/>
+
+    <h2>Guess:</h2>
+    <label for="guess"></label><input type="text" id="guess" name="guess" value="">
+    <input type="button" class="btn btn-primary" value="Guess" onclick="guessWord();"/>
+</body>
+</html>
