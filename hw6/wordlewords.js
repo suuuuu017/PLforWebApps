@@ -63,7 +63,17 @@ function callback(word) {
     localStorage.setItem("word", word);
 }
 
-function guessWord(newWord){
+function guessWord(){
+
+    if(localStorage.getItem("history") == null){
+        // TODO: dk why i can put getitem into parse
+        localStorage.setItem("history", JSON.stringify([]));
+        var s = localStorage.getItem("history");
+        var history = JSON.parse(s);
+    }
+    else{
+        history = JSON.parse(localStorage.getItem("history"));
+    }
 
     var guess = document.getElementById("guess").value;
     var word = localStorage.getItem("word");
@@ -96,4 +106,73 @@ function guessWord(newWord){
         }
     }
     console.log(locCount + " characters are in the right location.");
+
+    var thisguess = {"guess": lowerguess, "count": count, "locCount": locCount};
+
+    history.push(thisguess);
+
+    localStorage.setItem("history", JSON.stringify(history));
+
+    printHistory();
+
+    if(lowerguess.length === lowerword.length && count === lowerword.length && locCount === lowerword.length){
+        if(localStorage.getItem("win") == null){
+            localStorage.setItem("win", JSON.stringify(0));
+            var w = localStorage.getItem("win");
+            var win = JSON.parse(w);
+        }
+        else{
+            w = localStorage.getItem("win");
+            win = JSON.parse(w);
+        }
+        win = win + 1;
+        localStorage.setItem("win", JSON.stringify(win));
+    }
+
+    printStats();
+
+}
+
+function printStats(){
+    if(localStorage.getItem("win") == null){
+        var win = 0;
+    }
+    else{
+        var w = localStorage.getItem("win");
+        win = JSON.parse(w);
+    }
+
+    var printhis = "You have won " + win + " times.";
+    document.getElementById("statics").innerHTML = printhis;
+}
+
+function printHistory(){
+    if(localStorage.getItem("history") == null){
+        // TODO: dk why i can put getitem into parse
+        localStorage.setItem("history", JSON.stringify([]));
+        var s = localStorage.getItem("history");
+        var history = JSON.parse(s);
+    }
+    else{
+        history = JSON.parse(localStorage.getItem("history"));
+    }
+
+    var printhis = history.map(h => {
+        return `Guess was: ${h.guess}, ${h.count} characters are in the answer,
+         ${h.locCount} characters are in the right location.`;
+    }).join("<br>");
+
+    document.getElementById("historyGuess").innerHTML = printhis;
+}
+
+function clearhistory(){
+    localStorage.removeItem("word");
+    localStorage.removeItem("history");
+    localStorage.removeItem("win");
+    document.getElementById("historyGuess").innerHTML = "";
+}
+
+function loadstuff(){
+    printHistory();
+    printStats();
 }

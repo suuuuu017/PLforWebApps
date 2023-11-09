@@ -12,12 +12,18 @@
     <script src="wordlewords.js"></script>
 </head>
 
-<body>
+<body onload=loadstuff()>
     <h1>Welcome to evil word guessing</h1>
     <input type="button" class="btn btn-primary" value="New Game" onclick="getRandomWord(callback);"/>
+    <input type="button" class="btn btn-primary" value="Clear History" onclick="clearhistory();"/>
 
     <h2>Guess:</h2>
     <label for="guess"></label><input type="text" id="guess" name="guess" value="">
     <input type="button" class="btn btn-primary" value="Guess" onclick="guessWord();"/>
+
+    <h5 id="historyGuess">Previous Guesses</h5>
+
+    <h2>Statics</h2>
+    <h5 id="statics"></h5>
 </body>
 </html>
