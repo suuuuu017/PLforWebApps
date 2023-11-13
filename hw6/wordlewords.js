@@ -56,14 +56,41 @@ function queryWord() {
 async function getRandomWord(callback) {
     var newWord = await queryWord();
     callback(newWord);
+    document.getElementById("historyGuess").innerHTML = "";
+    if(localStorage.getItem("justwon") === "null"){
+        localStorage.setItem("winStreak", JSON.stringify(0));
+    }
+    localStorage.setItem("history", JSON.stringify([]));
+    document.getElementById("guess").value = "";
+    printStats();
+    enableGuess();
 }
 
 function callback(word) {
     console.log(word);
     localStorage.setItem("word", word);
+    if(localStorage.getItem("gamesPlayed") == null){
+        localStorage.setItem("gamesPlayed", JSON.stringify(1));
+    }
+    else{
+        var tmp = localStorage.getItem("gamesPlayed");
+        var gamesPlayed = JSON.parse(tmp);
+        gamesPlayed = gamesPlayed + 1;
+        localStorage.setItem("gamesPlayed", JSON.stringify(gamesPlayed));
+    }
 }
 
 function guessWord(){
+
+    if(localStorage.getItem("guessNum") == null){
+        localStorage.setItem("guessNum", JSON.stringify(1));
+    }
+    else{
+        var tmp = localStorage.getItem("guessNum");
+        var guessNum = JSON.parse(tmp);
+        guessNum = guessNum + 1;
+        localStorage.setItem("guessNum", JSON.stringify(guessNum));
+    }
 
     if(localStorage.getItem("history") == null){
         // TODO: dk why i can put getitem into parse
@@ -80,7 +107,7 @@ function guessWord(){
     console.log(guess);
     document.getElementById("guess").value = "";
 
-    var lowerguess = guess.toLowerCase();
+    var lowerguess = guess.trim().toLowerCase();
     var lowerword = word.toLowerCase();
 
     if(lowerguess.length < lowerword.length){
@@ -114,8 +141,10 @@ function guessWord(){
     localStorage.setItem("history", JSON.stringify(history));
 
     printHistory();
+    localStorage.setItem("justwon", JSON.stringify(null));
 
     if(lowerguess.length === lowerword.length && count === lowerword.length && locCount === lowerword.length){
+        localStorage.setItem("justwon", JSON.stringify(1));
         if(localStorage.getItem("win") == null){
             localStorage.setItem("win", JSON.stringify(0));
             var w = localStorage.getItem("win");
@@ -127,10 +156,34 @@ function guessWord(){
         }
         win = win + 1;
         localStorage.setItem("win", JSON.stringify(win));
+        disableGuess();
+        alert("You won, plese start a new game.");
+        if(localStorage.getItem("winStreak") == null){
+            localStorage.setItem("winStreak", JSON.stringify(1));
+            var ws = localStorage.getItem("winStreak");
+            var winStreak = JSON.parse(ws);
+        }
+        else{
+            ws = localStorage.getItem("winStreak");
+            winStreak = JSON.parse(ws);
+            winStreak = winStreak + 1;
+            localStorage.setItem("winStreak", JSON.stringify(winStreak));
+        }
     }
+
 
     printStats();
 
+}
+
+function enableGuess() {
+    var inputElement = document.getElementById('guess');
+    inputElement.disabled = false;
+}
+
+function disableGuess() {
+    var inputElement = document.getElementById('guess');
+    inputElement.disabled = true;
 }
 
 function printStats(){
@@ -141,8 +194,37 @@ function printStats(){
         var w = localStorage.getItem("win");
         win = JSON.parse(w);
     }
-
     var printhis = "You have won " + win + " times.";
+
+    if(localStorage.getItem("gamesPlayed") == null){
+        var gamesPlayed = 0;
+    }
+    else{
+        var gp = localStorage.getItem("gamesPlayed");
+        gamesPlayed = JSON.parse(gp);
+    }
+
+    printhis = printhis + " You have played " + gamesPlayed + " games.";
+
+
+    if(localStorage.getItem("guessNum") == null){
+        var guessNum = 0;
+    }
+    else{
+        var gn = localStorage.getItem("guessNum");
+        guessNum = JSON.parse(gn);
+    }
+    printhis = printhis + " Your average guesses per game is " + guessNum/gamesPlayed + ".";
+
+    if(localStorage.getItem("winStreak") == null){
+        var winStreak = 0;
+    }
+    else{
+        var ws = localStorage.getItem("winStreak");
+        winStreak = JSON.parse(ws);
+    }
+    printhis = printhis + " You are on a " + winStreak + " win streak.";
+
     document.getElementById("statics").innerHTML = printhis;
 }
 
@@ -169,7 +251,11 @@ function clearhistory(){
     localStorage.removeItem("word");
     localStorage.removeItem("history");
     localStorage.removeItem("win");
+    localStorage.removeItem("gamesPlayed");
+    localStorage.removeItem("guessNum");
+    localStorage.removeItem("winStreak");
     document.getElementById("historyGuess").innerHTML = "";
+    printStats();
 }
 
 function loadstuff(){
