@@ -258,7 +258,14 @@ function clearhistory(){
     printStats();
 }
 
+function savestuff(){
+    localStorage.setItem("word", document.getElementById("word").value);
+    localStorage.setItem("preGuess", document.getElementById("guess").value);
+}
+
 function loadstuff(){
+    document.getElementById("guess").value = localStorage.getItem("preGuess");
+    enableGuess();
     printHistory();
     printStats();
 }
