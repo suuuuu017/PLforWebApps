@@ -57,13 +57,19 @@ async function getRandomWord(callback) {
     var newWord = await queryWord();
     callback(newWord);
     document.getElementById("historyGuess").innerHTML = "";
+    // var t = 0;
     if(localStorage.getItem("justwon") === "null"){
         localStorage.setItem("winStreak", JSON.stringify(0));
+        // t = localStorage.getItem("gamesPlayed");
+        // t = JSON.parse(t);
+        // localStorage.setItem("gamesPlayed", JSON.stringify(0));
     }
     localStorage.setItem("history", JSON.stringify([]));
     document.getElementById("guess").value = "";
     printStats();
     enableGuess();
+    localStorage.setItem("justwon", JSON.stringify(0));
+    // localStorage.setItem("gamesPlayed", JSON.stringify(t));
 }
 
 function callback(word) {
@@ -109,6 +115,11 @@ function guessWord(){
 
     var lowerguess = guess.trim().toLowerCase();
     var lowerword = word.toLowerCase();
+
+    var regex = /[0-9!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/;
+    if(regex.test(lowerguess)){
+        alert("Your guess contains invalid characters.");
+    }
 
     if(lowerguess.length < lowerword.length){
         console.log("Your guess is too short.");
@@ -256,6 +267,7 @@ function clearhistory(){
     localStorage.removeItem("winStreak");
     document.getElementById("historyGuess").innerHTML = "";
     printStats();
+    disableGuess();
 }
 
 function savestuff(){
