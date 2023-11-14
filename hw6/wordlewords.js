@@ -68,7 +68,7 @@ async function getRandomWord(callback) {
     document.getElementById("guess").value = "";
     printStats();
     enableGuess();
-    localStorage.setItem("justwon", JSON.stringify(0));
+    localStorage.setItem("justwon", JSON.stringify(null));
     // localStorage.setItem("gamesPlayed", JSON.stringify(t));
 }
 
@@ -255,7 +255,6 @@ function printHistory(){
     else{
         history = JSON.parse(localStorage.getItem("history"));
     }
-    //also print if the answer is too long or too short
 
     printhis = history.map(h => {
         return `Guess was: ${h.guess}, ${h.count} characters are in the answer,

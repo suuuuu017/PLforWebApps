@@ -20,8 +20,10 @@
     <input type="button" class="btn btn-primary" value="Clear History" onclick="clearhistory();"/>
 
     <h2>Guess:</h2>
-    <label for="guess"></label><input type="text" id="guess" name="guess" value="">
-    <input type="button" class="btn btn-primary" value="Guess" onclick="guessWord();"/>
+    <form>
+        <label for="guess"></label><input type="text" id="guess" name="guess" value="">
+        <input type="button" class="btn btn-primary" value="Guess" onclick="guessWord();"/>
+    </form>
 
     <h5 id="historyGuess">Previous Guesses</h5>
 
