@@ -123,9 +123,15 @@ function guessWord(){
 
     if(lowerguess.length < lowerword.length){
         console.log("Your guess is too short.");
+        localStorage.setItem("length", "short");
+    }
+    else if(lowerguess.length === lowerword.length){
+        console.log("Your guess is the same length.");
+        localStorage.setItem("length", "same");
     }
     else{
         console.log("Your guess is too long.");
+        localStorage.setItem("length", "long");
     }
 
     var count = 0;
@@ -249,10 +255,11 @@ function printHistory(){
     else{
         history = JSON.parse(localStorage.getItem("history"));
     }
+    //also print if the answer is too long or too short
 
-    var printhis = history.map(h => {
+    printhis = history.map(h => {
         return `Guess was: ${h.guess}, ${h.count} characters are in the answer,
-         ${h.locCount} characters are in the right location.`;
+         ${h.locCount} characters are in the right location. The guess is too ${localStorage.getItem("length")}.`;
     }).join("<br>");
 
     document.getElementById("historyGuess").innerHTML = printhis;
