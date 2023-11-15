@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="">
+    <meta name="description" content="evil word guessing">
+
+    <title>Lights Out</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"  integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"  crossorigin="anonymous">
+
+    <script src=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</head>
+
+<style>
+    .cell{
+        width: 50px;
+        height: 50px;
+        border: 2px solid #000;
+        background-color: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+    .cellOut{
+        width: 50px;
+        height: 50px;
+        border: 2px solid #000;
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+    }
+</style>
+
+<body onload="" onunload="">
+    <h1>Welcome to Lights Out</h1>
+    <p>Please start a new game after deciding on the size of the game board by clicking on the new game. Enjoy! </p>
+    <p>Please input the #rows and #columns you want for the game board in the order of rows and columns.</p>
+    <form method="get">
+        <label for="rows"></label><input type="number" id="rows" name="rows" value="">
+        <label for="columns"></label><input type="number" id="columns" name="columns" value="">
+        <input type="submit" class="btn btn-primary" value="New Game" onclick="submitsetup(); return false;"/>
+    </form>
+    <div id="board"></div>
+</body>
+
+<script>
+    function submitsetup() {
+        $(document).ready(function(){
+            $.get("./setup.php", {rows: $("#rows").val(), columns: $("#columns").val()}, function(returnedData){
+                console.log(returnedData);
+                printgameboard($("#rows").val(), $("#columns").val(), returnedData);
+            });
+        });
+    }
+
+    function printgameboard(rows, columns, returnedData){
+        $lightout = JSON.parse(returnedData);
+        for (let row = 0; row < rows; row++) {
+            let r = $("<span class='row'></span>");
+            for (let col = 0; col < columns; col++) {
+                if($lightout.some(pair => pair[0] === row && pair[1] === col)){
+                    r.append("<div class='cellOut'></div>");
+                }
+                else {
+                    r.append("<div class='cell'></div>");
+                }
+            }
+            $("#board").append(r)
+        }
+        console.log($lightout);
+    }
+
+</script>
+</html>
