@@ -11,6 +11,38 @@
 
     <script src=""></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.js" integrity="sha512-+k1pnlgt4F1H8L7t3z95o3/KO+o78INEcXTbnoJQ/F2VqDVhWoaiVml/OEHv9HsVgxUaVW+IbiZPUJQfF/YxZw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script>
+        function submitsetup() {
+            $(document).ready(function(){
+                localStorage.clear();
+                localStorage.setItem("rows", $("#rows").val());
+                localStorage.setItem("columns", $("#columns").val());
+                $.get("./setup.php", {rows: $("#rows").val(), columns: $("#columns").val()}, function(returnedData){
+                    console.log(returnedData);
+                    printgameboard($("#rows").val(), $("#columns").val(), returnedData);
+                });
+            });
+        }
+
+        function printgameboard(rows, columns, returnedData){
+            $lightout = JSON.parse(returnedData);
+            for (let row = 0; row < rows; row++) {
+                let r = $("<tr class='row'></tr>");
+                for (let col = 0; col < columns; col++) {
+                    let unique = row + "_" + col;
+                    if($lightout.some(pair => pair[0] === row && pair[1] === col)){
+                        r.append("<td class='cellOut' id = \"" + unique + "\" ></td>");
+                    }
+                    else {
+                        r.append("<td class='cell' id = \"" + unique + "\" ></td>");
+                    }
+                }
+                $("#board").append(r)
+            }
+            console.log($lightout);
+        }
+    </script>
 </head>
 
 <style>
@@ -49,31 +81,80 @@
 </body>
 
 <script>
-    function submitsetup() {
-        $(document).ready(function(){
-            $.get("./setup.php", {rows: $("#rows").val(), columns: $("#columns").val()}, function(returnedData){
-                console.log(returnedData);
-                printgameboard($("#rows").val(), $("#columns").val(), returnedData);
-            });
-        });
-    }
-
-    function printgameboard(rows, columns, returnedData){
-        $lightout = JSON.parse(returnedData);
-        for (let row = 0; row < rows; row++) {
-            let r = $("<span class='row'></span>");
-            for (let col = 0; col < columns; col++) {
-                if($lightout.some(pair => pair[0] === row && pair[1] === col)){
-                    r.append("<div class='cellOut'></div>");
+    $(document).ready(function(){
+        $("body").on("click", "td", function(){
+            let row = parseInt($(this).attr("id").split("_")[0]);
+            let col = parseInt($(this).attr("id").split("_")[1]);
+            if($(this).hasClass("cell")){
+                $(this).addClass("cellOut").removeClass("cell");
+            }
+            else if($(this).hasClass("cellOut")){
+                $(this).addClass("cell").removeClass("cellOut");
+            }
+            let r = JSON.parse(localStorage.getItem("rows"));
+            let c = JSON.parse(localStorage.getItem("columns"));
+            if(row - 1 >= 0){
+                let unique = (row - 1) + "_" + col;
+                console.log("toggled" + unique);
+                if($("#" + unique).hasClass("cell")){
+                    $("#" + unique).addClass("cellOut").removeClass("cell");
                 }
-                else {
-                    r.append("<div class='cell'></div>");
+                else if($("#" + unique).hasClass("cellOut")){
+                    $("#" + unique).addClass("cell").removeClass("cellOut");
                 }
             }
-            $("#board").append(r)
-        }
-        console.log($lightout);
-    }
+            if(row + 1 < r){
+                let unique = (row + 1) + "_" + col;
+                console.log("toggled" + unique);
+                if($("#" + unique).hasClass("cell")){
+                    $("#" + unique).addClass("cellOut").removeClass("cell");
+                }
+                else if($("#" + unique).hasClass("cellOut")){
+                    $("#" + unique).addClass("cell").removeClass("cellOut");
+                }
+            }
+            if(col - 1 >= 0){
+                let unique = row + "_" + (col - 1);
+                console.log("toggled" + unique);
+                if($("#" + unique).hasClass("cell")){
+                    $("#" + unique).addClass("cellOut").removeClass("cell");
+                }
+                else if($("#" + unique).hasClass("cellOut")){
+                    $("#" + unique).addClass("cell").removeClass("cellOut");
+                }
+            }
+            if(col + 1 < c){
+                let unique = row + "_" + (col + 1);
+                console.log("toggled" + unique);
+                if($("#" + unique).hasClass("cell")){
+                    $("#" + unique).addClass("cellOut").removeClass("cell");
+                }
+                else if($("#" + unique).hasClass("cellOut")){
+                    $("#" + unique).addClass("cell").removeClass("cellOut");
+                }
+            }
+        });
+
+    });
+
+    // function turnandflip(){
+    //     $("td").on("mouseover", function(){
+    //         let row = $(this).attr("id").split(",")[0];
+    //         let col = $(this).attr("id").split(",")[1];
+    //         console.log(row);
+    //         console.log(col);
+    //         if($(this).hasClass("cell")){
+    //             $(this).addClass("cellOut");
+    //             $(this).removeClass("cell");
+    //         }
+    //         else if($(this).hasClass("cellOut")){
+    //             $(this).addClass("cell");
+    //             $(this).removeClass("cellOut");
+    //         }
+    //     });
+    //
+    //
+    // }
 
 </script>
 </html>
