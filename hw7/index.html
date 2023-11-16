@@ -16,6 +16,7 @@
         function submitsetup() {
             $(document).ready(function(){
                 localStorage.clear();
+                $("#board").empty();
                 localStorage.setItem("rows", $("#rows").val());
                 localStorage.setItem("columns", $("#columns").val());
                 $.get("./setup.php", {rows: $("#rows").val(), columns: $("#columns").val()}, function(returnedData){
@@ -41,6 +42,13 @@
                 $("#board").append(r)
             }
             console.log($lightout);
+        }
+
+        function cleanpage(){
+            $("#board").empty();
+            $("#rows").val("");
+            $("#columns").val("");
+            localStorage.clear();
         }
     </script>
 </head>
@@ -133,28 +141,12 @@
                     $("#" + unique).addClass("cell").removeClass("cellOut");
                 }
             }
+            if($("td").hasClass("cellOut") === false){
+                alert("You won the game!")
+                cleanpage();
+            }
         });
-
     });
-
-    // function turnandflip(){
-    //     $("td").on("mouseover", function(){
-    //         let row = $(this).attr("id").split(",")[0];
-    //         let col = $(this).attr("id").split(",")[1];
-    //         console.log(row);
-    //         console.log(col);
-    //         if($(this).hasClass("cell")){
-    //             $(this).addClass("cellOut");
-    //             $(this).removeClass("cell");
-    //         }
-    //         else if($(this).hasClass("cellOut")){
-    //             $(this).addClass("cell");
-    //             $(this).removeClass("cellOut");
-    //         }
-    //     });
-    //
-    //
-    // }
 
 </script>
 </html>
