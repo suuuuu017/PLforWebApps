@@ -1,23 +1,36 @@
-<p>Guess: {{guess | json}}</p>
-<p>History: {{history | json}}</p>
-<p>Form data: {{guessForm.value | json}}</p>
-<p>Return data: {{response | json}}</p>
+<!--<p>Guess: {{guess | json}}</p>-->
+<!--<p>History: {{history | json}}</p>-->
+<!--<p>Form data: {{guessForm.value | json}}</p>-->
+<!--<p>Return data: {{response | json}}</p>-->
+<p>Answer:{{answer | json}}</p>
 
 <p>Please start a new game by clicking on the new game button, sumbit your guess by the submit button,
   you can clear your guess history by using the clear histroy button. Enjoy! </p>
-<button (click)="requireWord()" class="btn btn-primary" value="Get Word">Get Word</button>
+<button (click)="requireWord()" class="btn btn-primary" value="Get Word" [ngStyle]="{'margin':'10px'}" >New Game</button>
 <button (click)="clearHistory()" class="btn btn-primary"> Clear History</button>
 
 <h2>Guess:</h2>
+<p *ngIf="guess.type == 'correct'" [ngClass]="{'al': this}">You guessed the word pls start a new game.</p>
+<p *ngIf="guess.type == 'empty'"  [ngClass]="{'al': this}">You haven't started a new game.</p>
 <form #guessForm="ngForm">
   <label for="guess"></label>
   <input [(ngModel)]="guess.g" required type="text" id="guess" name="guess">
          <!--#guessInput="ngModel"-->
          <!--[class.is-invalid]="guessInput.invalid && guessInput.touched"-->
-  <button (click)="guessWord()" class="btn btn-success" value="Guess" [disabled]="guessForm.form.invalid">Guess</button>
+  <button (click)="guessWord()" class="btn btn-success" value="Guess" [disabled]="guessForm.form.invalid "
+          [ngStyle]="{'margin':'10px'}">Guess</button>
 </form>
 
 <h5 id="historyGuess">Previous Guesses</h5>
 
-<h2>Statics</h2>
-<h5 id="statics"></h5>
+<ul class="list-group list-group-flush">
+  <li class="list-group-item" *ngFor="let g of history">
+    Guess was: {{g.g}}, with {{g.rightLetter}} letters in the word
+    and {{g.rightPosition}} letters in the right position. It was {{g.type}}.
+  </li>
+</ul>
+
+
+
+<!--<h2>Statics</h2>-->
+<!--<h5 id="statics"></h5>-->
