@@ -12,6 +12,6 @@ export class GetWordService {
   ) { }
 
   sendRequest(data:any):Observable<any>{
-    return this.http.post("http://localhost:63342/PLWA/hw8/evil/backend.php", JSON.stringify(data));
+    return this.http.post("https://cs4640.cs.virginia.edu/qvw9pv/hw8/wordle_api.php", JSON.stringify(data));
   }
 }
